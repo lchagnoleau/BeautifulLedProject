@@ -43,7 +43,9 @@
 #include "stm32f4xx_hal.h"
 #include "timer.h"
 #include "init.h"
+#include "spi.h"
 #include "diag/Trace.h"
+#include "lsm6ds3.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/

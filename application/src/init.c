@@ -6,6 +6,7 @@
  */
 
 #include "init.h"
+#include "spi.h"
 
 static void SystemClock_Config(void);
 static void GPIO_Init(void);
@@ -18,7 +19,10 @@ void Init()
   /* Init TIM6 Counter to 100 kHz */
   MX_TIM6_Init();
   /* Init GPIO */
-  GPIO_Init();
+  //GPIO_Init();
+  /* Init SPI */
+  //HAL_SPI_MspInit(&hspi1);
+  MX_SPI1_Init();
 }
 
 
