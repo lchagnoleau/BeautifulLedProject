@@ -135,7 +135,7 @@ IMU_6AXES_StatusTypeDef LSM6DS3_IO_Write( uint8_t* pBuffer, uint8_t DeviceAddr, 
   SPI_CSState(0);
 
   TM_SPI_Send(pkt);            // read command
-  TM_SPI_Send(*pBuffer);
+  TM_SPI_Send(pBuffer);
 
   //Set CS
   SPI_CSState(1);
