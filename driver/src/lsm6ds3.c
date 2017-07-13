@@ -51,26 +51,6 @@
  * @{
  */
 
-static IMU_6AXES_StatusTypeDef    LSM6DS3_Init( IMU_6AXES_InitTypeDef *LSM6DS3_Init );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_Read_XG_ID( uint8_t *xg_id);
-static IMU_6AXES_StatusTypeDef    LSM6DS3_X_GetAxes( int32_t *pData );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_X_GetAxesRaw(int16_t *pData);
-static IMU_6AXES_StatusTypeDef    LSM6DS3_G_GetAxes( int32_t *pData );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_G_GetAxesRaw(int16_t *pData);
-static IMU_6AXES_StatusTypeDef    LSM6DS3_X_Get_ODR( float *odr );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_X_Set_ODR( float odr );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_X_GetSensitivity( float *pfData );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_X_Get_FS( float *fullScale );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_X_Set_FS( float fullScale );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_G_Get_ODR( float *odr );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_G_Set_ODR( float odr );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_G_GetSensitivity( float *pfData );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_G_Get_FS( float *fullScale );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_G_Set_FS( float fullScale );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_Enable_Free_Fall_Detection( void );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_Disable_Free_Fall_Detection( void );
-static IMU_6AXES_StatusTypeDef    LSM6DS3_Get_Status_Free_Fall_Detection( uint8_t *status );
-
 /** @addtogroup LSM6DS3_Private_Variables LSM6DS3_Private_Variables
  * @{
  */
@@ -112,9 +92,9 @@ IMU_6AXES_DrvExtTypeDef LSM6DS3Drv_ext =
 /**
  * @}
  */
-static IMU_6AXES_StatusTypeDef LSM6DS3_Common_Sensor_Enable(void);
-static IMU_6AXES_StatusTypeDef LSM6DS3_X_Set_Axes_Status(uint8_t enableX, uint8_t enableY, uint8_t enableZ);
-static IMU_6AXES_StatusTypeDef LSM6DS3_G_Set_Axes_Status(uint8_t enableX, uint8_t enableY, uint8_t enableZ);
+IMU_6AXES_StatusTypeDef LSM6DS3_Common_Sensor_Enable(void);
+IMU_6AXES_StatusTypeDef LSM6DS3_X_Set_Axes_Status(uint8_t enableX, uint8_t enableY, uint8_t enableZ);
+IMU_6AXES_StatusTypeDef LSM6DS3_G_Set_Axes_Status(uint8_t enableX, uint8_t enableY, uint8_t enableZ);
 
 /** @addtogroup LSM6DS3_Private_Functions LSM6DS3_Private_Functions
  * @{
@@ -125,7 +105,7 @@ static IMU_6AXES_StatusTypeDef LSM6DS3_G_Set_Axes_Status(uint8_t enableX, uint8_
  * @param  LSM6DS3_Init the configuration setting for the LSM6DS3
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_Init( IMU_6AXES_InitTypeDef *LSM6DS3_Init )
+IMU_6AXES_StatusTypeDef    LSM6DS3_Init( IMU_6AXES_InitTypeDef *LSM6DS3_Init )
 {
   /*Here we have to add the check if the parameters are valid*/
   
@@ -190,7 +170,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_Init( IMU_6AXES_InitTypeDef *LSM6DS3_I
  * @param  xg_id the pointer where the ID of the device is stored
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_Read_XG_ID( uint8_t *xg_id)
+IMU_6AXES_StatusTypeDef    LSM6DS3_Read_XG_ID( uint8_t *xg_id)
 {
   if(!xg_id)
   {
@@ -204,7 +184,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_Read_XG_ID( uint8_t *xg_id)
  * @brief  Set LSM6DS3 common initialization
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef LSM6DS3_Common_Sensor_Enable(void)
+IMU_6AXES_StatusTypeDef LSM6DS3_Common_Sensor_Enable(void)
 {
   uint8_t tmp1 = 0x00;
   
@@ -250,7 +230,7 @@ static IMU_6AXES_StatusTypeDef LSM6DS3_Common_Sensor_Enable(void)
  * @param  pData the pointer where the accelerometer raw data are stored
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef LSM6DS3_X_GetAxesRaw( int16_t *pData )
+IMU_6AXES_StatusTypeDef LSM6DS3_X_GetAxesRaw( int16_t *pData )
 {
   /*Here we have to add the check if the parameters are valid*/
   
@@ -288,7 +268,7 @@ static IMU_6AXES_StatusTypeDef LSM6DS3_X_GetAxesRaw( int16_t *pData )
  * @param  pData the pointer where the accelerometer data are stored
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_X_GetAxes( int32_t *pData )
+IMU_6AXES_StatusTypeDef    LSM6DS3_X_GetAxes( int32_t *pData )
 {
   /*Here we have to add the check if the parameters are valid*/
   int16_t pDataRaw[3];
@@ -318,7 +298,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_X_GetAxes( int32_t *pData )
  * @param  pData the pointer where the gyroscope raw data are stored
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef LSM6DS3_G_GetAxesRaw( int16_t *pData )
+IMU_6AXES_StatusTypeDef LSM6DS3_G_GetAxesRaw( int16_t *pData )
 {
   /*Here we have to add the check if the parameters are valid*/
   
@@ -356,7 +336,7 @@ static IMU_6AXES_StatusTypeDef LSM6DS3_G_GetAxesRaw( int16_t *pData )
  * @param  enableZ the status of the z axis to be set
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef LSM6DS3_X_Set_Axes_Status(uint8_t enableX, uint8_t enableY, uint8_t enableZ)
+IMU_6AXES_StatusTypeDef LSM6DS3_X_Set_Axes_Status(uint8_t enableX, uint8_t enableY, uint8_t enableZ)
 {
   uint8_t tmp1 = 0x00;
   uint8_t eX = 0x00;
@@ -399,7 +379,7 @@ static IMU_6AXES_StatusTypeDef LSM6DS3_X_Set_Axes_Status(uint8_t enableX, uint8_
  * @param  enableZ the status of the z axis to be set
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef LSM6DS3_G_Set_Axes_Status(uint8_t enableX, uint8_t enableY, uint8_t enableZ)
+IMU_6AXES_StatusTypeDef LSM6DS3_G_Set_Axes_Status(uint8_t enableX, uint8_t enableY, uint8_t enableZ)
 {
   uint8_t tmp1 = 0x00;
   uint8_t eX = 0x00;
@@ -440,7 +420,7 @@ static IMU_6AXES_StatusTypeDef LSM6DS3_G_Set_Axes_Status(uint8_t enableX, uint8_
  * @param  pData the pointer where the gyroscope data are stored
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_G_GetAxes( int32_t *pData )
+IMU_6AXES_StatusTypeDef    LSM6DS3_G_GetAxes( int32_t *pData )
 {
   /*Here we have to add the check if the parameters are valid*/
   int16_t pDataRaw[3];
@@ -468,7 +448,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_G_GetAxes( int32_t *pData )
  * @param  odr the pointer where the accelerometer output data rate is stored
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_X_Get_ODR( float *odr )
+IMU_6AXES_StatusTypeDef    LSM6DS3_X_Get_ODR( float *odr )
 {
   /*Here we have to add the check if the parameters are valid*/
   uint8_t tempReg = 0x00;
@@ -527,7 +507,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_X_Get_ODR( float *odr )
  * @param  odr the accelerometer output data rate to be set
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_X_Set_ODR( float odr )
+IMU_6AXES_StatusTypeDef    LSM6DS3_X_Set_ODR( float odr )
 {
   uint8_t new_odr = 0x00;
   uint8_t tempReg = 0x00;
@@ -565,7 +545,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_X_Set_ODR( float odr )
  * @param  pfData the pointer where the accelerometer sensitivity is stored
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_X_GetSensitivity( float *pfData )
+IMU_6AXES_StatusTypeDef    LSM6DS3_X_GetSensitivity( float *pfData )
 {
   /*Here we have to add the check if the parameters are valid*/
   
@@ -605,7 +585,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_X_GetSensitivity( float *pfData )
  * @param  fullScale the pointer where the accelerometer full scale is stored
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_X_Get_FS( float *fullScale )
+IMU_6AXES_StatusTypeDef    LSM6DS3_X_Get_FS( float *fullScale )
 {
   /*Here we have to add the check if the parameters are valid*/
   
@@ -645,7 +625,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_X_Get_FS( float *fullScale )
  * @param  fullScale the accelerometer full scale to be set
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_X_Set_FS( float fullScale )
+IMU_6AXES_StatusTypeDef    LSM6DS3_X_Set_FS( float fullScale )
 {
   uint8_t new_fs = 0x00;
   uint8_t tempReg = 0x00;
@@ -676,7 +656,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_X_Set_FS( float fullScale )
  * @param  odr the pointer where the gyroscope output data rate is stored
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_G_Get_ODR( float *odr )
+IMU_6AXES_StatusTypeDef    LSM6DS3_G_Get_ODR( float *odr )
 {
   /*Here we have to add the check if the parameters are valid*/
   uint8_t tempReg = 0x00;
@@ -729,7 +709,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_G_Get_ODR( float *odr )
  * @param  odr the gyroscope output data rate to be set
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
  */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_G_Set_ODR( float odr )
+IMU_6AXES_StatusTypeDef    LSM6DS3_G_Set_ODR( float odr )
 {
   uint8_t new_odr = 0x00;
   uint8_t tempReg = 0x00;
@@ -765,7 +745,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_G_Set_ODR( float odr )
  * @param  pfData the pointer where the gyroscope sensitivity is stored
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
 */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_G_GetSensitivity( float *pfData )
+IMU_6AXES_StatusTypeDef    LSM6DS3_G_GetSensitivity( float *pfData )
 {
   /*Here we have to add the check if the parameters are valid*/
   
@@ -818,7 +798,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_G_GetSensitivity( float *pfData )
  * @param  fullScale the pointer where the gyroscope full scale is stored
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
 */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_G_Get_FS( float *fullScale )
+IMU_6AXES_StatusTypeDef    LSM6DS3_G_Get_FS( float *fullScale )
 {
   /*Here we have to add the check if the parameters are valid*/
   
@@ -871,7 +851,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_G_Get_FS( float *fullScale )
  * @param  fullScale the gyroscope full scale to be set
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
 */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_G_Set_FS( float fullScale )
+IMU_6AXES_StatusTypeDef    LSM6DS3_G_Set_FS( float fullScale )
 {
   uint8_t new_fs = 0x00;
   uint8_t tempReg = 0x00;
@@ -935,7 +915,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_G_Set_FS( float fullScale )
  * @brief  Enable free fall detection
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
 */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_Enable_Free_Fall_Detection( void )
+IMU_6AXES_StatusTypeDef    LSM6DS3_Enable_Free_Fall_Detection( void )
 {
   uint8_t tmp1 = 0x00;
   
@@ -1022,7 +1002,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_Enable_Free_Fall_Detection( void )
  * @brief  Disable free fall detection
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
 */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_Disable_Free_Fall_Detection( void )
+IMU_6AXES_StatusTypeDef    LSM6DS3_Disable_Free_Fall_Detection( void )
 {
   uint8_t tmp1 = 0x00;
   
@@ -1066,7 +1046,7 @@ static IMU_6AXES_StatusTypeDef    LSM6DS3_Disable_Free_Fall_Detection( void )
  * @param  status the pointer where the status of free fall detection is stored; 0 means no detection, 1 means detection happened
  * @retval IMU_6AXES_OK in case of success, an error code otherwise
 */
-static IMU_6AXES_StatusTypeDef    LSM6DS3_Get_Status_Free_Fall_Detection( uint8_t *status )
+IMU_6AXES_StatusTypeDef    LSM6DS3_Get_Status_Free_Fall_Detection( uint8_t *status )
 {
   uint8_t tmp1 = 0x00;
   

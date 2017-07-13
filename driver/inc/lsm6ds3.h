@@ -1461,6 +1461,26 @@ extern IMU_6AXES_DrvExtTypeDef LSM6DS3Drv_ext;
  * @}
  */
 
+IMU_6AXES_StatusTypeDef    LSM6DS3_Init( IMU_6AXES_InitTypeDef *LSM6DS3_Init );
+IMU_6AXES_StatusTypeDef    LSM6DS3_Read_XG_ID( uint8_t *xg_id);
+IMU_6AXES_StatusTypeDef    LSM6DS3_X_GetAxes( int32_t *pData );
+IMU_6AXES_StatusTypeDef    LSM6DS3_X_GetAxesRaw(int16_t *pData);
+IMU_6AXES_StatusTypeDef    LSM6DS3_G_GetAxes( int32_t *pData );
+IMU_6AXES_StatusTypeDef    LSM6DS3_G_GetAxesRaw(int16_t *pData);
+IMU_6AXES_StatusTypeDef    LSM6DS3_X_Get_ODR( float *odr );
+IMU_6AXES_StatusTypeDef    LSM6DS3_X_Set_ODR( float odr );
+IMU_6AXES_StatusTypeDef    LSM6DS3_X_GetSensitivity( float *pfData );
+IMU_6AXES_StatusTypeDef    LSM6DS3_X_Get_FS( float *fullScale );
+IMU_6AXES_StatusTypeDef    LSM6DS3_X_Set_FS( float fullScale );
+IMU_6AXES_StatusTypeDef    LSM6DS3_G_Get_ODR( float *odr );
+IMU_6AXES_StatusTypeDef    LSM6DS3_G_Set_ODR( float odr );
+IMU_6AXES_StatusTypeDef    LSM6DS3_G_GetSensitivity( float *pfData );
+IMU_6AXES_StatusTypeDef    LSM6DS3_G_Get_FS( float *fullScale );
+IMU_6AXES_StatusTypeDef    LSM6DS3_G_Set_FS( float fullScale );
+IMU_6AXES_StatusTypeDef    LSM6DS3_Enable_Free_Fall_Detection( void );
+IMU_6AXES_StatusTypeDef    LSM6DS3_Disable_Free_Fall_Detection( void );
+IMU_6AXES_StatusTypeDef    LSM6DS3_Get_Status_Free_Fall_Detection( uint8_t *status );
+
 /**
  * @}
  */

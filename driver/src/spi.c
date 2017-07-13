@@ -130,12 +130,15 @@ IMU_6AXES_StatusTypeDef LSM6DS3_IO_Write( uint8_t* pBuffer, uint8_t DeviceAddr, 
     uint16_t NumByteToWrite )
 {
   uint8_t pkt = RegisterAddr;
+  uint8_t i = 0;
 
   //Clear CS
   SPI_CSState(0);
 
   TM_SPI_Send(pkt);            // read command
-  TM_SPI_Send(pBuffer);
+
+  for(i=0; i<NumByteToWrite; i++)
+      TM_SPI_Send(pBuffer[i]);
 
   //Set CS
   SPI_CSState(1);
@@ -145,6 +148,7 @@ IMU_6AXES_StatusTypeDef LSM6DS3_IO_Read( uint8_t* pBuffer, uint8_t DeviceAddr, u
     uint16_t NumByteToRead )
 {
   uint8_t pkt = 0x00;
+  uint8_t i = 0;
   pkt = 0x80; // read command
   pkt = pkt | RegisterAddr;
 
@@ -152,7 +156,9 @@ IMU_6AXES_StatusTypeDef LSM6DS3_IO_Read( uint8_t* pBuffer, uint8_t DeviceAddr, u
   SPI_CSState(0);
 
   TM_SPI_Send(pkt);                // read command
-  *pBuffer = TM_SPI_Send(0x00);    // just to read
+
+  for(i=0; i<NumByteToRead; i++)
+    pBuffer[i] = TM_SPI_Send(0x00);    // just to read
 
   //Set CS
   SPI_CSState(1);
