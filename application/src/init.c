@@ -19,7 +19,7 @@ void Init()
   /* Init TIM6 Counter to 100 kHz */
   MX_TIM6_Init();
   /* Init GPIO */
-  //GPIO_Init();
+  GPIO_Init();
   /* Init SPI */
   //HAL_SPI_MspInit(&hspi1);
   MX_SPI1_Init();
@@ -34,10 +34,10 @@ static void GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED_Pin|GND_Pin, GPIO_PIN_RESET);
+  //HAL_GPIO_WritePin(GPIOA, LED_Pin|GND_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : LED_Pin */
-  GPIO_InitStruct.Pin = GPIO_PIN_5;
+  GPIO_InitStruct.Pin = GPIO_PIN_12;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FAST;
